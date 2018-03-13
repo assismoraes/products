@@ -15,4 +15,5 @@ Route::group(['prefix' => '/'], function() {
     Route::get('/', 'ProductController@home')->name('home');
     Route::post('/', 'ProductController@save')->name('save');
     Route::get('/products', 'ProductController@products')->name('products');
+    Route::get('/products/{id}', 'ProductController@product')->name('product');
 });

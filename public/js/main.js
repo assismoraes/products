@@ -11,6 +11,7 @@ $('#btnSaveProd').click(function() {
     var nowFormatted = now.toLocaleString();
 
     var product = {
+        id: $('#id').val(),
         productName: $('#productName').val(),
         quantityInStock: $('#quantityInStock').val(),
         pricePerItem: $('#pricePerItem').val(),
@@ -25,6 +26,7 @@ $('#btnSaveProd').click(function() {
             $('#productName').val('');
             $('#quantityInStock').val('');
             $('#pricePerItem').val('');
+            $('#id').val('');
             fillTable();            
         },
         statusCode: {
@@ -51,9 +53,24 @@ function fillTable() {
             $.each(products, function(i, p) {
                 var t = p.pricePerItem * p.quantityInStock;
                 total +=  t;
-                $('#tableBody').append('<tr><th scope="row">' + p.productName + '</th><td>' + p.quantityInStock + '</td><td><i class="fa fa-dollar"></i> ' + p.pricePerItem + '</td><td>' + p.dateTime + '</td><td><i class="fa fa-dollar"></i> ' + t + '</td></tr>');
+                $('#tableBody').append('<tr><th class="text-center" scope="row">' + p.productName + '</th><td class="text-center" >' + p.quantityInStock + '</td><td class="text-center" ><i class="fa fa-dollar"></i> ' + p.pricePerItem + '</td><td class="text-center" >' + p.dateTime + '</td><td class="text-center" ><i class="fa fa-dollar"></i> ' + t + '</td><td class="text-center" ><button type="button" onclick=edit("' + p.id +'") class="btn btn-outline-primary btn-sm">Edit</button></td></tr>');
             });
-            $('#tableBody').append('<tr><th scope="row">----</th><td>----</td><td>----</td><td>----</td><td><i class="fa fa-dollar"></i> ' + total + '</td></tr>');
+            $('#tableBody').append('<tr><th class="text-center" scope="row">----</th><td class="text-center" >----</td><td class="text-center" >----</td><td class="text-center" >----</td><td class="text-center" ><i class="fa fa-dollar"></i> ' + total + '</td><td class="text-center" >----</td></tr>');
+        }
+    });
+}
+
+
+function edit(id) {
+    $.ajax({
+        url: '/products/' + id,
+        type: 'GET',
+        dataType: 'JSON',
+        success: function(p) { 
+            $('#productName').val(p.productName);
+            $('#quantityInStock').val(p.quantityInStock);
+            $('#pricePerItem').val(p.pricePerItem);
+            $('#id').val(p.id);
         }
     });
 }

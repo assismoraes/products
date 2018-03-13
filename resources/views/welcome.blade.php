@@ -13,6 +13,7 @@
                         <div class="col-md-12 order-md-1">
                           <h4 class="mb-3">Products</h4>
                           <form class="needs-validation" novalidate>
+                            <input type="hidden" name="id" id="id" >
                             <div class="row">
                               <div class="col-md-6 mb-3">
                                 <label for="productName">Product name</label>
@@ -48,11 +49,12 @@
                         <table class="table">
                             <thead class="thead-dark">
                               <tr>
-                                <th scope="col">Product name</th>
-                                <th scope="col">Quantity in stock</th>
-                                <th scope="col">Price per item</th>
-                                <th scope="col">Datetime submitted</th>
-                                <th scope="col">Total value</th>
+                                <th class="text-center" scope="col">Product name</th>
+                                <th class="text-center" scope="col">Quantity in stock</th>
+                                <th class="text-center" scope="col">Price per item</th>
+                                <th class="text-center" scope="col">Datetime submitted</th>
+                                <th class="text-center" scope="col">Total value</th>
+                                <th class="text-center" scope="col">Options</th>
                               </tr>
                             </thead>
                             <tbody id="tableBody">
